@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editor | Admin Portal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+
+  <style>
+    :root {
+      --ck-sample-base-spacing: 2em;
+      --ck-sample-color-white: #fff;
+      --ck-sample-color-green: #279863;
+      --ck-sample-color-blue: #1a9aef;
+      --ck-sample-container-width: 1285px;
+      --ck-sample-sidebar-width: 350px;
+      --ck-sample-editor-min-height: 400px;
+      --ck-sample-editor-z-index: 10;
+    }
+
+    .editor__editable,
+    /* Classic build. */
+    main .ck-editor[role='application'] .ck.ck-content,
+    /* Decoupled document build. */
+    .ck.editor__editable[role='textbox'],
+    .ck.ck-editor__editable[role='textbox'],
+    /* Inline & Balloon build. */
+    .ck.editor[role='textbox'] {
+      width: 100%;
+      background: #fff;
+      font-size: 1em;
+      line-height: 1.6em;
+      min-height: var(--ck-sample-editor-min-height);
+      padding: 1.5em 2em;
+    }
+
+    .ck.ck-editor__editable {
+      background: #fff;
+      border: 1px solid hsl(0, 0%, 70%);
+      width: 100%;
+    }
+
+    .ck.ck-editor {
+      /* To enable toolbar wrapping. */
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    /* Because of sidebar `position: relative`, Edge is overriding the outline of a focused editor. */
+    .ck.ck-editor__editable {
+      position: relative;
+      z-index: var(--ck-sample-editor-z-index);
+    }
+
+    /* --------- DECOUPLED (DOCUMENT) BUILD. ---------------------------------------------*/
+    body[data-editor='DecoupledDocumentEditor'] {
+      font-family: 'Ubuntu', sans-serif;
+    }
+
+    body[data-editor='DecoupledDocumentEditor'] .document-editor__toolbar {
+      width: 100%;
+    }
+
+    body[ data-editor='DecoupledDocumentEditor'] .collaboration-demo__editable,
+    body[ data-editor='DecoupledDocumentEditor'] .editor-main .editor {
+      width: 18.5cm;
+      height: 100%;
+      min-height: 26.25cm;
+      padding: 1.75cm 1.5cm;
+      margin: 2.5rem;
+      border: 1px hsl(0, 0%, 82.7%) solid;
+      background-color: var(--ck-sample-color-white);
+      box-shadow: 0 0 5px hsla(0, 0%, 0%, .1);
+    }
+
+    body[ data-editor='DecoupledDocumentEditor'] .editor-main {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      overflow-y: auto;
+      background-color: #f2f2f2;
+      border: 1px solid hsl(0, 0%, 77%);
+      height: 12cm;
+    }
+  </style>
+
+</head>
+
+<body data-editor="DecoupledDocumentEditor" data-collaboration="false">
+  <main>
+    <nav class="navbar sticky-top navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="col-12">
+          <button type="button" class="btn btn-primary me-2" id="savecontent">Save</button>
+          <button type="button" class="btn btn-danger" onclick="goback()">Go Back</button>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid my-3">
+      <section>
+        <div class="article-editor" id="contentid">
+          <div class="document-editor__toolbar"></div>
+          <div class="editor-main">
+            <div class="editor"></div>
+          </div>
+        </div>
+    </div>
+    </section>
+    </div>
+  </main>
+
+  <script src="ckeditor/build/ckeditor.js"></script>
+  <script src="ckeditor/build/customediter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
